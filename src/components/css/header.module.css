@@ -1,0 +1,11 @@
+.header{
+    grid-area: h;
+    background-color: dodgerblue;
+    }
+    .header.img {
+        width: 20 px;
+    }
+
+    .item {
+        color: antiquewhite;
+    }
