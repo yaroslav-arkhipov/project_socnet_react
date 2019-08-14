@@ -3,10 +3,7 @@ import dialogReducer from "./dialog-reducer";
 
 let store ={
     _state: {
-        PostsData: [
-            {id: 1, post: 'Привет пацаны', likecount: 11},
-            {id: 2, post: 'Дароу', likecount: 15}
-        ],
+       
         DialogData: [
             {id: 1, name: 'Ника'},
             {id: 2, name: 'Димыч'},
@@ -26,7 +23,7 @@ let store ={
         return this._state;
     },
     reRender(){
-
+        
     },
     subscribe (observer) {
         this.reRender = observer;
