@@ -2,6 +2,7 @@ import React from 'react';
 import c from '.././css/profile.module.css';
 import MyPosts from './myposts/myposts.js';
 import Post from "./myposts/posts/post";
+import MyPostsContainer from './myposts/mypostscontainer';
 
 
 const profile = (props) => {
@@ -13,7 +14,8 @@ const profile = (props) => {
     <div>
       <img src="https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg" />
     </div>
-   <MyPosts posts = {props.posts} dispatch={props.dispatch} newPost={props.newPost}/>
+  
+   <MyPostsContainer dispatch={props.dispatch} posts = {props.posts} newPost={props.newPost}/>
   </div>
 }
 export default profile;

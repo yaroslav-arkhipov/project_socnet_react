@@ -7,7 +7,7 @@ let initialState ={
         {id: 2, message: 'Как дела?'},
         {id: 3, message: 'Жопка'},
     ],
-    NewMessageText: 'Отправить сообщение...',
+    NewMessageText: '',
     DialogData: [
         {id: 1, name: 'Ника'},
         {id: 2, name: 'Димыч'},

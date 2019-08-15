@@ -20,6 +20,21 @@
     padding: 10px;
 }
 
-.message {
-
+.messagebox {
+position: fixed;
+display: block;
+margin-top: 15px;
+bottom: 0;
+margin-bottom: 100px;
+width: 100%;
+}
+.messagebox button{
+    position: fixed;
+    display: block;
+    margin-top: 15px;
+    bottom: 0;
+    margin-bottom: 50px;
+}
+.messagebox textarea{
+    width: 50%;
 }
