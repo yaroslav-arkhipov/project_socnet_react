@@ -24,10 +24,7 @@ const App = (props) => {
                 message={props.state} 
                 dispatch={props.dispatch} 
                 newMessage={props.state}/>} />
-                <Route path='/profile' render = { ()=> <Profile 
-                posts = {props.state} 
-                dispatch={props.dispatch} 
-                newPost={props.state} />} />
+                <Route path='/profile' render = { ()=> <Profile />} />
                 <Route path='/music' component={Music} />
                 <Route path='/settings' component={Settings} />
             </div>

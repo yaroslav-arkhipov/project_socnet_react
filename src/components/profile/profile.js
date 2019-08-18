@@ -15,7 +15,7 @@ const profile = (props) => {
       <img src="https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg" />
     </div>
   
-   <MyPostsContainer dispatch={props.dispatch} posts = {props.posts} newPost={props.newPost}/>
+   <MyPostsContainer />
   </div>
 }
 export default profile;
