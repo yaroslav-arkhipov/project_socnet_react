@@ -2,7 +2,7 @@ import React from 'react';
 import c from '.././css/profile.module.css';
 import MyPosts from './myposts/myposts.js';
 import Post from "./myposts/posts/post";
-import MyPostsContainer from './myposts/mypostscontainer';
+import PostsContainer from './myposts/mypostscontainer';
 
 
 const profile = (props) => {
@@ -15,7 +15,7 @@ const profile = (props) => {
       <img src="https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg" />
     </div>
   
-   <MyPostsContainer />
+   <PostsContainer />
   </div>
 }
 export default profile;
