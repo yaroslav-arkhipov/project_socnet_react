@@ -11,7 +11,7 @@ import {Provider} from "react-redux";
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-            <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
+            <App state={store.getState()}/>
             </Provider>
         </BrowserRouter>, document.getElementById('root'));
 

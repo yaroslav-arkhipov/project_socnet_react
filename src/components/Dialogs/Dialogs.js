@@ -10,43 +10,44 @@ const DialogItem = (props) => {
     );
 }
 const Message = (props) =>{
-return(
-    <div className={d.message}>
-        {props.message}
-    </div>
-);
+    return(
+        <div className={d.message}>
+            {props.message}
+        </div>
+    );
 }
 
 const Dialogs = (props) => {
 
-    let DialogElement = props.dialog.DialogPage.DialogData.map( d => <DialogItem name={d.name} id={d.id}/>);
-    let MessagesElement = props.message.DialogPage.MessagesData.map( m => <Message message={m.message}/>);
+    let DialogElement = props.DialogData.map( d => <DialogItem name={d.name} id={d.id}/>);
+    let MessagesElement = props.MessageData.map( m => <Message message={m.message}/>);
     let sendMessage = React.createRef();
     let newMessage =()=>{
         let text = sendMessage.current.value;
-        props.dispatch({type: 'ADD-MESSAGE', Message: text});
+        props.newMessage(text);
+        sendMessage.current.value ='';
     }
     let MessageChange = () =>{
         let text = sendMessage.current.value;
-        props.dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: text});
+        props.updatePostText(text);
     }
-        return (
-            <div className={d.dialogs}>
-                <div className={d.dialogItems}>
-                    {DialogElement}
-                </div>
+    return (
+        <div className={d.dialogs}>
+            <div className={d.dialogItems}>
+                {DialogElement}
+            </div>
 
-                <div className={d.messages}>
-                    {MessagesElement}
-                    <div className={d.messagebox}>
-                        <textarea  className={d.messagebox} onChange={MessageChange} ref={sendMessage} value={props.newMessage.DialogPage.NewMessageText} placeholder="Введите ваше сообщение"></textarea>
-                        <div>
+            <div className={d.messages}>
+                {MessagesElement}
+                <div className={d.messagebox}>
+                    <textarea  className={d.messagebox} onChange={MessageChange} ref={sendMessage} value={props.NewMessageText} placeholder="Введите ваше сообщение"></textarea>
+                    <div>
                         <button onClick={newMessage}>Отправить</button>
-                        </div>
                     </div>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
+}
 
 export default Dialogs;
