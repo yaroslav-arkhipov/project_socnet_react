@@ -4,13 +4,15 @@ const SET_USERS= 'SET_USERS';
 const SET_CURRENT_PAGE= 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT= 'SET_TOTAL_USERS_COUNT';
 const SET_PAGE_SIZE= 'SET_PAGE_SIZE';
+const SET_FETCHING= 'SET_FETCHING';
 
 
 let initialState ={
     users: [ ],
     PageSize:10,
     totalCount: 0,
-    currentPage: 2
+    currentPage: 2,
+    isFetching: true,
 }
 
 const userReducer = (state = initialState, action) =>{
@@ -44,6 +46,9 @@ const userReducer = (state = initialState, action) =>{
         case SET_PAGE_SIZE: {
             return {...state,PageSize:action.PageSize}
         }
+        case SET_FETCHING: {
+            return {...state,isFetching:action.isFetching}
+        }
         default: return state;
     }
 
@@ -54,5 +59,6 @@ export const SetUsersAC = (users) =>{return{type: SET_USERS, users}}
 export const SetPageAC = (currentPage) =>{return{type: SET_CURRENT_PAGE, currentPage}}
 export const SetTotalUsersCountAC = (totalCount) =>{return{type: SET_TOTAL_USERS_COUNT, totalCount}}
 export const SetCountOnPageAC = (PageSize) =>{return{type: SET_PAGE_SIZE, PageSize}}
+export const SetIsFetchingAC = (isFetching) =>{return{type: SET_FETCHING, isFetching}}
 
 export default userReducer;
