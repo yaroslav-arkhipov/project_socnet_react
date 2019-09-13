@@ -9,3 +9,13 @@
     .item {
         color: antiquewhite;
     }
+
+    .loginbox{
+        float: right;
+        padding-left: 15px;
+        margin-left: 5px;
+    }
+.loginbox a{
+    color: white;
+
+}
