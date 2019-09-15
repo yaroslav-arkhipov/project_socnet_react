@@ -6,24 +6,25 @@ import * as axios from "axios";
 import Users from "./users";
 import preloader from '../../images/preloader.svg';
 import Preloader from "../common/preloader";
+import {getUsers} from "../../api/api";
 
 export class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.PageSize}`).then(response => {
+        getUsers(this.props.currentPage, this.props.PageSize).then(data => {
             this.props.setIsFetching(false);
-            this.props.setusers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
+            this.props.setusers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
         });
     }
 
     setCurrentPage = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.PageSize}`).then(response => {
+        getUsers(pageNumber, this.props.PageSize).then(data => {
             this.props.setIsFetching(false);
-            this.props.setusers(response.data.items);
+            this.props.setusers(data.items);
         });
     }
 
