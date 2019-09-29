@@ -10,3 +10,18 @@ export const getUsers = (currentPage = 1, PageSize = 10) =>{
     return instance.get(`users?page=${currentPage}&count=${PageSize}`)
         .then(response =>response.data);
 }
+
+export const authMe = () =>{
+    instance.get(`auth/me`).then(response => response.data);
+}
+
+export const getProfile = (userID) =>{
+    instance.get(`profile/` + userID).then(response => response.data);
+}
+
+export const follow = (userId) =>{
+
+}
+export const unfollow = (userId) =>{
+
+}

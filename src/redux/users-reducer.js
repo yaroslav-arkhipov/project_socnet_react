@@ -1,3 +1,5 @@
+import {getUsers} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW= 'UNFOLLOW';
 const SET_USERS= 'SET_USERS';
@@ -5,6 +7,7 @@ const SET_CURRENT_PAGE= 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT= 'SET_TOTAL_USERS_COUNT';
 const SET_PAGE_SIZE= 'SET_PAGE_SIZE';
 const SET_FETCHING= 'SET_FETCHING';
+const SET_FOLLOWING_PROGRESS= 'SET_FOLLOWING_PROGRESS';
 
 
 let initialState ={
@@ -13,6 +16,7 @@ let initialState ={
     totalCount: 0,
     currentPage: 2,
     isFetching: true,
+    followingProgress: false
 }
 
 const userReducer = (state = initialState, action) =>{
@@ -49,6 +53,9 @@ const userReducer = (state = initialState, action) =>{
         case SET_FETCHING: {
             return {...state,isFetching:action.isFetching}
         }
+        case SET_FOLLOWING_PROGRESS: {
+            return {...state,followingProgress:action.isFetching}
+        }
         default: return state;
     }
 
@@ -60,5 +67,16 @@ export const SetPageAC = (currentPage) =>{return{type: SET_CURRENT_PAGE, current
 export const SetTotalUsersCountAC = (totalCount) =>{return{type: SET_TOTAL_USERS_COUNT, totalCount}}
 export const SetCountOnPageAC = (PageSize) =>{return{type: SET_PAGE_SIZE, PageSize}}
 export const SetIsFetchingAC = (isFetching) =>{return{type: SET_FETCHING, isFetching}}
+
+export const getUsersThunkCreator = (currentPage, PageSize) =>{
+    return (dispatch) =>{
+    dispatch(SetIsFetchingAC(true));
+    getUsers(currentPage, PageSize).then(data => {
+        dispatch(SetIsFetchingAC(false));
+        dispatch(SetUsersAC(data.items));
+        dispatch(SetTotalUsersCountAC(data.totalCount));
+    });
+}
+}
 
 export default userReducer;

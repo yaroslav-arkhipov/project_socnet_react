@@ -1,7 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {addPostActionCreator, UpdatePostTextActionCreator} from "../../redux/profile-reducer";
-import {followAC, SetUsersAC, unfollowAC, SetPageAC, SetTotalUsersCountAC, SetIsFetchingAC} from "../../redux/users-reducer";
+import {
+    followAC,
+    SetUsersAC,
+    unfollowAC,
+    SetPageAC,
+    SetTotalUsersCountAC,
+    SetIsFetchingAC,
+    getUsersThunkCreator
+} from "../../redux/users-reducer";
 import * as axios from "axios";
 import Users from "./users";
 import preloader from '../../images/preloader.svg';
@@ -11,21 +19,18 @@ import {getUsers} from "../../api/api";
 export class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
-        this.props.setIsFetching(true);
-        getUsers(this.props.currentPage, this.props.PageSize).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setusers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.PageSize);
+        // this.props.setIsFetching(true);
+        // getUsers(this.props.currentPage, this.props.PageSize).then(data => {
+        //     this.props.setIsFetching(false);
+        //     this.props.setusers(data.items);
+        //     this.props.setTotalUsersCount(data.totalCount);
+        // });
     }
 
     setCurrentPage = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.setIsFetching(true);
-        getUsers(pageNumber, this.props.PageSize).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setusers(data.items);
-        });
+        this.props.getUsers(pageNumber, this.props.PageSize);
+
     }
 
     render() {
@@ -67,17 +72,16 @@ let MapDispatchToProps = (dispatch) => {
             let action = SetUsersAC(users);
             dispatch(action);
         },
-        setCurrentPage: (pageNumber) => {
-            dispatch(SetPageAC(pageNumber));
-        },
         setTotalUsersCount: (totalCount) => {
             dispatch(SetTotalUsersCountAC(totalCount));
         },
         setIsFetching: (isFetching) => {
             dispatch(SetIsFetchingAC(isFetching));
-        }
+        },
+
+
     }
 }
 
 
-export default connect(MapStateToProps, MapDispatchToProps)(UsersAPIComponent);
+export default connect(MapStateToProps, {MapDispatchToProps, getUsers: getUsersThunkCreator})(UsersAPIComponent);
