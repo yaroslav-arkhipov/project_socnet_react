@@ -12,11 +12,11 @@ export const getUsers = (currentPage = 1, PageSize = 10) =>{
 }
 
 export const authMe = () =>{
-    instance.get(`auth/me`).then(response => response.data);
+    return instance.get(`auth/me`).then(response => response.data);
 }
 
 export const getProfile = (userID) =>{
-    instance.get(`profile/` + userID).then(response => response.data);
+   return instance.get(`profile/` + userID).then(response => response.data);
 }
 
 export const follow = (userId) =>{
