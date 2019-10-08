@@ -31,7 +31,7 @@ const Dialogs = (props) => {
         let text = sendMessage.current.value;
         props.updatePostText(text);
     }
-    if (props.isAuth === false) return <Redirect to={"/login"}/>;
+
     return (
         <div className={d.dialogs}>
             <div className={d.dialogItems}>

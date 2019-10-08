@@ -12,7 +12,9 @@ export const getUsers = (currentPage = 1, PageSize = 10) =>{
 }
 
 export const authMe = () =>{
+
     return instance.get(`auth/me`).then(response => response.data);
+
 }
 
 export const getProfile = (userID) =>{
