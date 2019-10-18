@@ -4,6 +4,7 @@ import {sendMessageActionCreator, UpdateMessageTextActionCreator} from "../../re
 import Dialogs from './Dialogs';
 import {Redirect} from "react-router-dom";
 import {AuthRedirect} from "../../HOC/AuthRedirect";
+import {compose} from "redux";
 
 let MapStateToProps = (state) =>{
     return {
@@ -22,7 +23,12 @@ let MapDispatchToProps = (dispatch) =>{
     }
 }
 
-let withAuthRedirect = AuthRedirect(Dialogs);
-const DialogContainer = connect(MapStateToProps, MapDispatchToProps)(withAuthRedirect);
+
+
+const DialogContainer = compose(
+    connect(MapStateToProps, MapDispatchToProps),
+    AuthRedirect
+)
+(Dialogs);
 
 export default DialogContainer;

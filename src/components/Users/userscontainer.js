@@ -20,12 +20,6 @@ export class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.PageSize);
-        // this.props.setIsFetching(true);
-        // getUsers(this.props.currentPage, this.props.PageSize).then(data => {
-        //     this.props.setIsFetching(false);
-        //     this.props.setusers(data.items);
-        //     this.props.setTotalUsersCount(data.totalCount);
-        // });
     }
 
     setCurrentPage = (pageNumber) => {
@@ -82,6 +76,5 @@ let MapDispatchToProps = (dispatch) => {
 
     }
 }
-
 
 export default connect(MapStateToProps, {MapDispatchToProps, getUsers: getUsersThunkCreator})(UsersAPIComponent);
