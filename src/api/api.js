@@ -34,9 +34,11 @@ export const profileAPI = {
     }
 }
 
-export const follow = (userId) =>{
-
-}
-export const unfollow = (userId) =>{
-
+export const authAPI ={
+    login(email, password, rememberme = false) {
+        return instance.post(`auth/login`, {email, password, rememberme}).then(response => response.data);
+    },
+    logout() {
+        return instance.delete(`auth/login`).then(response => response.data);
+    }
 }

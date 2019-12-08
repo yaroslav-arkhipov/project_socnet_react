@@ -49,11 +49,6 @@ export const addPostActionCreator = (text) =>{
         type:ADD_POST, postMessage: text
     }
 }
-export const UpdatePostTextActionCreator = (text) =>{
-    return{
-        type: UPDATE_POST_TEXT, newText: text
-    }
-}
 export const setUserProfile = (profile) =>{
     return{
         type: SET_USER_PROFILE, profile

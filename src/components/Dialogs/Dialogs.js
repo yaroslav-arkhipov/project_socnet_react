@@ -1,6 +1,11 @@
 import React from 'react';
 import d from '.././css/dialogs.module.css'
 import {NavLink, Redirect} from "react-router-dom";
+import DialogsSend from './dialog-form';
+import {Field, reduxForm} from "redux-form";
+import {TextArea} from "../common/FormsControls";
+import {maxLengthCreator, required} from "../../utils/validation/valid-form";
+
 
 const DialogItem = (props) => {
     return (
@@ -27,9 +32,9 @@ const Dialogs = (props) => {
         props.newMessage(text);
         sendMessage.current.value ='';
     }
-    let MessageChange = () =>{
-        let text = sendMessage.current.value;
-        props.updatePostText(text);
+
+    let addNewMessage = (values) =>{
+        props.newMessage(values.messageBody);
     }
 
     return (
@@ -40,15 +45,27 @@ const Dialogs = (props) => {
 
             <div className={d.messages}>
                 {MessagesElement}
-                <div className={d.messagebox}>
-                    <textarea  className={d.messagebox} onChange={MessageChange} ref={sendMessage} value={props.NewMessageText} placeholder="Введите ваше сообщение"></textarea>
-                    <div>
-                        <button onClick={newMessage}>Отправить</button>
-                    </div>
+                <div>
+                <DialogsReduxForm onSubmit={addNewMessage}/>
                 </div>
             </div>
         </div>
     );
 }
 
+const DialogsForm = (props) => {
+    return(
+    <form onSubmit={props.handleSubmit}>
+        <div>
+            <Field placeholder={"Введите ваше сообщение"} name={"messageBody"} component={TextArea}
+                   validate={[]}/>
+        </div>
+        <div>
+            <button>Отправить</button>
+        </div>
+    </form>
+    )
+}
+
+const DialogsReduxForm = reduxForm ({form: 'dialogAddMessageForm'})(DialogsForm);
 export default Dialogs;

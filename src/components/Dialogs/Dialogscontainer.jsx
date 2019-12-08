@@ -15,10 +15,6 @@ let MapStateToProps = (state) =>{
 
 let MapDispatchToProps = (dispatch) =>{
     return {
-        updatePostText:(text)=>{
-            let action = UpdateMessageTextActionCreator(text);
-            dispatch(action);
-        },
         newMessage:(text)=>{dispatch(sendMessageActionCreator(text));}
     }
 }
@@ -26,8 +22,7 @@ let MapDispatchToProps = (dispatch) =>{
 
 
 const DialogContainer = compose(
-    connect(MapStateToProps, MapDispatchToProps),
-    AuthRedirect
+    connect(MapStateToProps, MapDispatchToProps)
 )
 (Dialogs);
 
